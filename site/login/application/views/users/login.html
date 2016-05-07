@@ -1,0 +1,68 @@
+<body>
+<center>
+<br />
+<style>
+notbody {  background-color:#000 };
+.sub90 {
+}
+
+div.sub90>img {
+        width:50px;;
+}
+.subarea .btn {
+        margin-bottom:5px;
+}
+.subarea {
+        background:#000;
+        color:#aaa;
+        margin-bottom:5px;
+        width:90%;
+        border-radius:5px;
+        padding:10px;
+        padding-top:50px;
+        padding-bottom:50px;
+}
+</style>
+<? if( isset( $_SESSION["user"] ) ){
+ // get the user data from database
+                $user = $this->loadModel( "user" );
+
+//	$user =  $_SESSION["user"];
+        $user_data = $user->find_by_id( $_SESSION["user"] );
+
+
+
+?>
+<div class='subarea'>
+<h3>Sportophile Login</h3>
+<br>
+You are currently logged in as<br>
+                        <?php echo $user_data["first_name"]; ?> <?php echo $user_data["last_name"]; ?>
+
+<br>
+<br>
+
+<a class='btn btn-inverse' href="?route=users/logout">Logout</a>
+<a class='btn btn-inverse' href="?route=users/profile">Profile</a>
+</div>
+<?
+} else {
+?>
+<div class='subarea'>
+<h3>Sportophile Login</h3>
+Since Sportophile uses Google Hangouts you will need to have a valid Google account.  You can also read our user agreement regarding what information we store. <a href="?route=pages/agreement" class='btn btn-mini btn-inverse'>User Agreement</a>
+<br>
+<br>
+<fieldset>
+<a href="?route=authentications/authenticatewith/google">
+<img width='250px' src="/img/sign-in-with-google.png"></a><br /> 
+	</fieldset> 
+</div>
+<?
+} 
+?>
+<?php if( isset( $error_message ) ) echo $error_message; ?>
+</center>
+ 
+</body>
+</html>

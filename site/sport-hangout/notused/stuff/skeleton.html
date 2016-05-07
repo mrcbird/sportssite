@@ -1,0 +1,73 @@
+<!-- Standard boilerplate to start hangouts.  Without these, your Hangout will not start. -->
+<script src="//hangoutsapi.talkgadget.google.com/talkgadget/apps/gadgets/js/rpc.js"></script>
+<script src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.1"></script>
+
+<style type="text/css">
+<!--
+.button {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+  background: -moz-linear-gradient(top, #fff, #ddd);  
+  border: 1px solid #bbb;
+}
+
+.button:active {
+background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333)); 
+background: -moz-linear-gradient(bottom, #ddd, #aaa); }
+
+-->
+</style>
+<body style="padding: 10px">
+
+<h3>Simple Hangout App (hangoutiframer edition)</h3>
+
+<p>
+<input class="button" type="button" value="Show participants!" id="showParticipants" 
+    style="visibility:hidden;"
+    onClick="showParticipants()"/>
+</p>
+
+<div id="participantsDiv"></div>
+
+<hr>
+
+<p><a href="http://developers.google.com/+/hangouts/getting-started">Read the docs</a>
+to learn more about developing Hangouts!</a></p>
+
+<script>
+function showParticipants() {
+  var participants = gapi.hangout.getParticipants();
+
+  var retVal = '<p>Participants: </p><ul>';
+
+  for (var index in participants) {
+    var participant = participants[index];
+
+    if (!participant.person) {
+      retVal += '<li>A participant not running this app</li>';
+    }
+    retVal += '<li>' + participant.person.displayName + '</li>';
+  }
+
+  retVal += '</ul>';
+
+  var div = document.getElementById('participantsDiv');
+
+  div.innerHTML = retVal;
+}
+
+function init() {
+  // When API is ready...
+  gapi.hangout.onApiReady.add(
+      function(eventObj) {
+        document.getElementById('showParticipants')
+            .style.visibility = 'visible';
+      }
+      );
+}
+
+// Add startup listener immediately.  If you need an
+// OAuth 2.0 access token, your startup will be different.
+init();
+</script>

@@ -1,0 +1,78 @@
+<style>
+.subarea2 {
+        background:#333;
+	padding:20px;
+        border-radius:5px;
+        color:#aaa;
+}
+.subarea input {
+	height:30px;
+}
+.subarea {
+        background:#000;
+	font-size:120%;
+        color:#aaa;
+        margin-bottom:5px;
+        width:90%;
+        border-radius:5px;
+        padding:40px;
+        padding-top:50px;
+        padding-bottom:50px;
+}
+</style>
+
+<div class='subarea'>
+
+
+   <h1>Sportophile</h1>
+   <h3>Edit Profile</h3>
+Create or edit your Sportophile Profile here.  
+<br>
+<br>
+Creating a Sportophile profile allows you to join a queue to talk to an athlete. Instead of showing a photo image of people waiting in our queue, we prefer to show a 30 second “video image.”  
+<br>
+<br>
+You can create this video image using your web cam or another video camera, following the instructions below.  We actually request that you create TWO of these video images – one which will appear when you are simply waiting in the queue, and another which will appear just before an athlete selects someone to talk to.  (Some people like to wave their arms and shout in this one!)  If you prefer not to create the video image(s), you may submit a still photo instead.  (But it won’t look as good!)  Please note that only your Screen Name will be visible to other users while you are talking to an athlete or in the queue.  
+<br><br>
+For your own privacy and security please do not use your last name or other private identity information as your Screen Name. 
+<br>
+<br>
+
+<div class="notcontainer"> 
+<form name="profile" action="" method="post" enctype="multipart/form-data" class="notwell subarea2 span8">
+    <div class="row">
+<?
+ global $profile;
+if (isset($profile)) {
+ //  var_dump($profile);
+	$city = $profile->city;
+	$state = $profile->state;
+//	$state = $profile->state;
+	$screen_name = $profile->screen_name;
+} else {
+	$city = "";
+	$state = "";
+	$screen_name = "";
+}
+?>
+    <div class="span4">
+            <label>Screen Name</label>
+            <input type="hidden" name="cmd" value="data">
+            <input type="text" name="screen_name" class="span3" placeholder="Your Screen Name" value="<? print $screen_name ?>">
+            <label>City Name (optional)</label>
+            <input type="text" name="city" class="span3" placeholder="Your City Name" value="<? print $city ?>">
+            <label>State (optional)</label>
+            <input type="text" name="state" class="span3" placeholder="Your State" value="<? print $state ?>">
+            <label>User Image</label>
+    	   <input type="file" name="upload"/>
+<br><p>
+         <button type="submit" class="btn btn-primary pull-right">Save</button>
+    </div>
+
+    </div>
+    </form>
+    <div style='clear:left;' ></div><br>
+</div>
+<a class='btn btn-danger' href="?route=users/profile">Return to Profile</a>
+
+

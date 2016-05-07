@@ -1,0 +1,48 @@
+<body> 
+<style>
+.subarea {
+        background:#000;
+        color:#aaa;
+        margin-bottom:5px;
+        width:90%;
+        border-radius:5px;
+        padding:40px;
+        padding-top:50px;
+        padding-bottom:50px;
+}
+</style>
+
+<div class='subarea'>
+<h1>Sportophile</h1>
+<h3>You are logged in as</h3>
+<br>
+<?php echo $user_authentication["display_name"]; ?>
+<?php //  echo var_dump($user_authentication); ?>
+<?php //echo var_dump($user_data); ?>
+
+
+<br />
+<br />
+<a class='btn btn-success' href="?route=users/edit_profile">Edit Profile</a>
+<a class='btn btn-success' href="?route=users/talk">Talk to an Athlete</a>
+<a class='btn btn-success' href="?route=pages/live">Live Broadcast</a>
+<a class='btn btn-danger' href="?route=users/logout">Logout</a>
+<br /><br />
+<?php 
+     if ($user_data['id'] < 3) {
+	print("<h3>You are an Admin</h3>");
+?>
+	<a class='btn btn-success' href="?route=events/start">Start Event</a>
+<?
+	
+     }
+?>
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+  <tr>
+    <td valign="top">
+		<fieldset>
+  </tr>
+</table>
+
+
+</div>

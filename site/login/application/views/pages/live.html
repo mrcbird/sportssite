@@ -1,0 +1,128 @@
+<style>
+#splashscreen {
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+}
+</style>
+
+<script>
+$(window).load(function() { 
+<? if( !isset( $_SESSION["user"] ) ){
+?>
+	$('#main').hide();
+	$('#splashscreen').hide();
+	setTimeout(dofade_in, 0);
+	setTimeout(dofade_out, 4000);
+	setTimeout(dofade_begin, 5000);
+<?
+} else {
+?>
+
+	$('#main').show();
+<?
+}
+?>
+	//$('#splashscreen').hide();
+});
+
+
+dofade_in = function() {
+    $('#splashscreen').fadeIn('fast');
+}
+
+dofade_begin = function() {
+	$('#main').fadeIn('slow');
+}
+dofade_out = function() {
+    $('#splashscreen').fadeOut('slow')
+}
+</script>
+<div style='display:none' id="main">
+<style>
+notbody {  background-color:#000 };
+.sub90 {
+}
+
+div.sub90>img {
+	width:50px;;
+}
+.subarea .btn {
+	margin-bottom:5px;
+}
+.subarea {
+	background:#000; 
+	margin-bottom:5px;
+	width:100%; 
+	border-radius:5px;
+	padding:10px;
+}
+</style>
+<script src="js/gfront.js" ></script>
+
+<script>
+Gtimer = <? print($timeleft) ?>;
+</script>
+<div style='text-align:center;font-weight:bold; font-size:150%;'>
+
+<div id='youtuber' class='subarea'>
+<iframe style="z-index:-9999;" width="640" height="400" src="//www.youtube.com/embed/QoLDHtLXR6c?autoplay=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class='subarea'>
+<img width='66%' src="/img/sportop_720_slim.png">
+</div>
+
+<div class='subarea sub90'>
+<img src='/img/h1.png'>
+<img src='/img/h2.png'>
+<img src='/img/h3.png'>
+<img src='/img/h5.png'>
+<img src='/img/h5.png'>
+<img src='/img/h5.png'>
+<img src='/img/h5.png'>
+<img src='/img/h5.png'>
+</div>
+
+<div class='subarea' style='text-align:center;font-weight:bold; font-size:150%;'>
+<?
+ if( isset( $_SESSION["user"] ) ){
+?>
+<a class="btn btn-inverse btn" href="?route=users/profile">Profile</a>
+<? 
+} else {
+
+?>
+<a class="btn btn-inverse btn" href="?route=users/login">Login</a>
+<? 
+}
+?>
+<a class="btn btn-inverse btn" href="?route=users/talk">Talk to an Athlete</a>
+<a class="btn btn-inverse btn" href="?route=pages/future">Upcoming Broadcast Schedule</a>
+<a class="btn btn-inverse btn" href="?route=pages/past">View Past Broadcasts</a>
+<a class="btn btn-inverse btn" href="?route=pages/agreement">User Agreement</a>
+<a class="btn btn-inverse btn" href="?route=pages/buystuff">Buy Stuff!</a>
+</div>
+</div>
+<div class='subarea' style='color:#bbb; text-align:center;font-weight:bold; font-size:150%;'>
+<h3>Previously Recorded Broadcast</h3>
+</div>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<hr>
+<br>
+
+
+</div>
+
+<div style='display:none; border-radius:10px; text-align:center; background:#000' id="splashscreen">
+<br><br>
+<img style='text-align: center;' width='66%' src="/img/sportop_720.png">
+<br><br>
+<h3>Connecting to Broadcast in 5 seconds...</h3>
+</div>
+
+
+

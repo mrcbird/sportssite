@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="Hangout Starter">
+   <Require feature="rpc" />
+   <Require feature="views" />\
+   <Require feature="locked-domain" /> \
+   </ModulePrefs>
+<Content type="html"><![CDATA[     
+<html>
+<link href="https://sportophile.com/assets/css/bootstrap.css" rel="stylesheet">
+
+<style type="text/css">
+<!--
+.button {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+  background: -moz-linear-gradient(top, #fff, #ddd);  
+  border: 1px solid #bbb;
+}
+.sport-user {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  padding:10px;
+  margin-top:10px;
+  margin-bottom:10px;
+  background-color: #aaa;
+  
+}
+
+#sport-userview {
+
+}
+#sport-userlist {
+   overflow-y:scroll;
+}
+
+.sport-button {
+  font-size: 18pt;
+  padding:4px;
+  font-weight: bold;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+  background: -moz-linear-gradient(top, #fff, #ddd);  
+  border: 1px solid #bbb;
+}
+.sport-counter {
+    font-weight:bold;
+     color:#222;
+    font-size:32px;
+    right-margin:5px;
+
+}
+
+.sport-label {
+     color:#222;
+    font-weight:bold;
+    font-size:14px;
+
+}
+.button:active {
+	background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333)); 
+	background: -moz-linear-gradient(bottom, #ddd, #aaa); }
+
+-->
+</style>
+<head>
+<title>Sportophile App</title>
+<meta http-equiv="Content-Type" content="text/html;
+charset = iso - 8859 - 1 " />
+</head>
+
+<body style='margin:15px; color:#222; background-color:#fff;'>
+<div id='layout'></div>
+<div id='sport-status'></div>
+<div id='sport-userview'></div>
+<div id='sport-userlist'></div>
+<script src="https://talkgadget.google.com/hangouts/_/api/hangout.js?v=1.3" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script src="https://sportophile.com/sport-hangout/sport-hangout.js"></script>
+
+<div id='fullUI' style='visibility:hidden;'>
+<div id='nbhang-content'></div>
+<script>
+
+function ninbot_overlay(string) {
+  // Create a canvas to draw on
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('width', 720);
+  canvas.setAttribute('height', 100);
+  
+  var context = canvas.getContext('2d');
+
+  //ninbot_getstat();
+
+  // Draw background
+  context.fillStyle = '#0000';
+  context.fillStyle = "rgba(0, 0, 0, 0.0)";
+  context.fillRect(0,0,720,160);
+
+  context.fillStyle = "rgba(0, 0, 0, 0.4)";
+  context.fillRect(0,0,720,100);
+
+  // Draw text
+  context.font = '32pt Helvetica';
+  context.lineWidth = 6;
+  context.lineStyle = '#000';
+//  context.fillStyle = '#FFF';
+  context.fillStyle = "rgba(200, 200, 200, 1.0)";
+  context.fillColor = '#ffff00';
+  context.fillColor = '#ffff00';
+  context.textAlign = 'center';
+  context.textBaseline = 'bottom';
+  // context.strokeText(string, canvas.width / 2, canvas.height / 2);
+  context.fillText(string, canvas.width / 2, canvas.height / 2);
+
+  return canvas.toDataURL();
+}
+
+$(function(){
+
+   nbhang.init();
+   var URL= "https://sportophile.com/sport-hangout/server.php?";
+
+   console.log("Test Flight 1");
+   $.ajax(URL, {
+    crossDomain:true, 
+    dataType: "jsonp", 
+    success:function(data,text,xhqr){
+console.log("Test Flight Landed");
+        $.each(data, function(i, item) {
+            alert(item);
+        });
+    }
+});
+   // $('#nbhang-content').append();
+
+}
+);
+
+run_stuff = function(cmd ) {
+
+  var img = gapi.hangout.av.effects.createImageResource(ninbot_overlay("Hello"));
+ // var overlayResource = gapi.hangout.av.effects.createImageResource(img);
+                var overlay = img.createOverlay({});
+                overlay.setPosition(0, 0);
+                overlay.setVisible(1);
+               //img.showOverLay();
+
+   console.log("Hi" );
+}
+</script>
+<div id='layout-areolda'></div>
+<hr>
+<div>
+  <input class="button"
+	 type="checkbox"
+	 value="Mirror me" id="mirror-checkbox"
+	 onClick="updateMirroring()">
+    Mirror me
+  </input>
+</div>
+</div>
+<script src="http://plushangoutstartershadow.appspot.com/static/mediaStarter.js"></script>
+]]>
+</Content>
+
+</Module>

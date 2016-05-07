@@ -1,0 +1,47 @@
+<h3>Start an Event</h3>
+<?php
+$_SESSION['usertype']="host";
+$_SESSION['username']= "tom";
+//$user_data['name'];
+?>
+<br><br>
+
+<div style='float:left; margin-right:10px;'>
+<a class='btn btn-success btn-inverse btn-large' onclick="hangout();">Start Hangout</a>
+</div>
+<div style='float:left'>
+<span style='margin-bottom:5px' class="">Name of your event </span><br>
+<input id='event-name' style="width:320px; height:25px; font-size:120%" type="text" value="Hangout with <?php echo $_SESSION['username']; ?>"></input>
+</div>
+<div id='debug-area'></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script>
+function hangout()
+{
+   var url = "eventlist.php?c=new&name=" + $('#event-name').val();
+$.get( url, function( data ) {
+        obj = JSON.parse(data);
+        ss = "";
+	var ur2="https://plus.google.com/hangouts/_?hso=0&gid=919050817699";
+ //window.open(ur2,'_blank');
+	
+        ss += "<h3>" + obj.name + "</h3>";
+        ss += "<b>" + obj.host + "</b>";
+        $("#debug-area").html(ss);
+	console.log(ur2);
+	window.location = ur2;
+});
+
+  console.log("Hangout");
+  console.log($('#event-name').val());
+
+}
+</script>
+<script src="js/ghost.js" ></script>
+
